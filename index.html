@@ -9,6 +9,7 @@
   <meta property="og:description" content="Senior Applied AI Scientist at Poshmark. 10+ years building production AI/ML, from crash detection for millions of drivers to research in control-based computer vision.">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://ibipul.github.io/">
+  <meta property="og:image" content="https://ibipul.github.io/images/riding.jpg">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230f766e'/><text x='32' y='43' font-family='Arial,sans-serif' font-size='30' font-weight='700' fill='white' text-anchor='middle'>BI</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,7 +65,8 @@
     nav ul a:hover { color: var(--text); text-decoration: none; }
 
     /* Hero */
-    header.hero { padding: 72px 0 40px; }
+    header.hero { padding: 64px 0 36px; display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: center; }
+    .hero-photo { width: 100%; height: auto; aspect-ratio: 482 / 300; object-fit: cover; border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--shadow); }
     .eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; margin: 0 0 12px; }
     h1 { font-size: clamp(36px, 6vw, 52px); line-height: 1.1; letter-spacing: -.02em; margin: 0 0 16px; }
     .lede { font-size: 19px; color: var(--muted); max-width: 680px; margin: 0 0 28px; }
@@ -80,7 +82,7 @@
     .btn svg { width: 16px; height: 16px; fill: currentColor; }
 
     /* Stats */
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 8px 0 24px; }
+    .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); gap: 12px; margin: 8px 0 24px; }
     .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
     .stat b { display: block; font-size: 26px; letter-spacing: -.01em; }
     .stat span { color: var(--muted); font-size: 13px; line-height: 1.4; display: block; }
@@ -138,7 +140,8 @@
     footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 
     @media (max-width: 720px) {
-      header.hero { padding: 48px 0 28px; }
+      header.hero { padding: 32px 0 28px; grid-template-columns: 1fr; gap: 24px; }
+      .hero-photo { order: -1; max-width: 482px; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       .grid { grid-template-columns: 1fr; }
       .skills { grid-template-columns: 1fr; gap: 4px; }
@@ -170,6 +173,7 @@
 <main class="wrap" id="top">
 
   <header class="hero">
+    <div class="hero-text">
     <p class="eyebrow">Senior Applied AI Scientist · Poshmark</p>
     <h1>Bipul Islam</h1>
     <p class="lede">I build production AI/ML systems. For 10+ years that meant crash detection and driver-scoring models for millions of drivers in mobility and telematics; now it's marketplace operations and entity understanding at Poshmark. Before that, a PhD on control-based computer vision.</p>
@@ -191,13 +195,13 @@
         Google Scholar
       </a>
     </div>
+    </div>
+    <img class="hero-photo" src="images/riding.jpg" width="482" height="300" alt="Bipul riding a fat-tire bike on a campus road">
   </header>
 
   <div class="stats" aria-label="Highlights">
     <div class="stat"><b>10+ yrs</b><span>building production AI/ML</span></div>
-    <div class="stat"><b>15M+</b><span>active users served by models I built</span></div>
-    <div class="stat"><b>30 PB+</b><span>telematics data processed</span></div>
-    <div class="stat"><b>49 states</b><span>actuarial approval for crash &amp; scoring models</span></div>
+    <div class="stat"><b>3.5 yrs</b><span>in academia</span></div>
   </div>
 
   <section id="experience">
