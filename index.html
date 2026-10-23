@@ -150,20 +150,6 @@
     a.card { color: inherit; transition: border-color .15s, transform .15s; }
     a.card:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-2px); }
     a.card h3::after { content: " ↗"; color: var(--accent); font-weight: 500; }
-    /* Cards for projects with a live site: the whole card opens the site, a separate link opens the source */
-    .card.live { position: relative; transition: border-color .15s, transform .15s; }
-    .card.live:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .card.live h3 a { color: inherit; }
-    .card.live h3 a::after { content: ""; position: absolute; inset: 0; border-radius: 16px; }
-    .card.live h3 a:hover { text-decoration: none; }
-    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .live-badge {
-      display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
-      font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .04em;
-    }
-    .live-badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-    .card-links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; font-weight: 500; }
-    .card-links a { position: relative; z-index: 1; }
     .more { margin-top: 16px; font-size: 15px; }
 
     /* Lists */
@@ -178,6 +164,51 @@
     .skills dt { color: var(--muted); font-size: 14px; padding-top: 3px; }
     .skills dd { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 
+    /* Live demo: a sidebar beside the main column on wide screens, a card under the intro otherwise */
+    .live { margin: 0 0 32px; }
+    .live-label { color: var(--accent); font-weight: 600; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; margin: 0 0 10px; }
+    .live-card {
+      display: block; overflow: hidden; color: inherit;
+      background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+      border-radius: 16px; box-shadow: var(--shadow); transition: border-color .15s, transform .15s, box-shadow .15s;
+    }
+    .live-card:hover { text-decoration: none; border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 24, 40, .10); }
+    .live-card img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--line); }
+    .live-body { display: grid; gap: 8px; padding: 16px 18px 18px; }
+    .live-body h3 { font-size: 17px; }
+    .live-body p { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.55; }
+    .live-badge {
+      display: inline-flex; align-items: center; gap: 6px; justify-self: start;
+      font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .05em;
+    }
+    .live-badge::before {
+      content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 7px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+    @media (prefers-reduced-motion: reduce) { .live-badge::before { animation: none; } }
+    .live-cta {
+      justify-self: start; margin-top: 4px; padding: 7px 14px; border-radius: 999px;
+      background: var(--accent); color: var(--bg); font-size: 14px; font-weight: 600;
+    }
+    .live-source { display: inline-block; margin-top: 10px; font-size: 14px; color: var(--muted); }
+    .live-source:hover { color: var(--text); }
+    @media (min-width: 560px) and (max-width: 1099px) {
+      .live-card { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+      .live-card img { height: 100%; object-fit: cover; object-position: left top; border-bottom: 0; border-right: 1px solid var(--line); }
+      .live-body { align-content: center; }
+    }
+    @media (min-width: 1100px) {
+      .wrap { max-width: 1180px; }
+      main.wrap {
+        display: grid; grid-template-columns: minmax(0, 1fr) 260px; column-gap: 44px;
+        grid-template-areas: "hero live" "content live";
+      }
+      main.wrap > .hero { grid-area: hero; }
+      main.wrap > .content { grid-area: content; min-width: 0; }
+      .live { grid-area: live; position: sticky; top: 84px; align-self: start; margin: 28px 0 0; }
+    }
+
     footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 
     @media (max-width: 720px) {
@@ -191,7 +222,7 @@
       nav .brand { display: none; }
     }
     @media print {
-      nav, .links, footer { display: none; }
+      nav, .links, footer, .live { display: none; }
       section { break-inside: avoid; }
       .card, .stat { box-shadow: none; }
     }
@@ -244,6 +275,22 @@
       </a>
     </div>
   </header>
+
+  <aside class="live" aria-labelledby="live-title">
+    <p class="live-label">Live demo</p>
+    <a class="live-card" href="https://ibipul.github.io/latex2html/">
+      <img src="images/latex2html.jpg" width="560" height="313" alt="The LaTeX to HTML converter: LaTeX source on the left, the rendered page on the right">
+      <div class="live-body">
+        <span class="live-badge">Live</span>
+        <h3 id="live-title">LaTeX to HTML Converter</h3>
+        <p>Paste or upload a LaTeX document and download a clean HTML page, math included. Runs entirely in your browser.</p>
+        <span class="live-cta">Open the app ↗</span>
+      </div>
+    </a>
+    <a class="live-source" href="https://github.com/ibipul/latex2html">Source on GitHub</a>
+  </aside>
+
+  <div class="content">
 
   <div class="stats" aria-label="Highlights">
     <div class="stat"><b>10+ yrs</b><span>building production AI/ML</span></div>
@@ -303,15 +350,6 @@
         <p>A REST API and chat playground for a RAG assistant that role-plays any character, with an input guardrail and a second chain that tags each reply's mood.</p>
         <div class="tags"><span class="tag">LangChain</span><span class="tag">LangServe</span><span class="tag">FAISS</span><span class="tag">OpenAI</span></div>
       </a>
-      <div class="card live">
-        <div class="card-head">
-          <h3><a href="https://ibipul.github.io/latex2html/">LaTeX to HTML Converter</a></h3>
-          <span class="live-badge">Live</span>
-        </div>
-        <p>Paste or upload a LaTeX document and download a clean, standalone HTML page, with math rendered by KaTeX. Runs entirely in the browser. A rewrite of my compiler-course flex/bison translator.</p>
-        <div class="card-links"><a href="https://ibipul.github.io/latex2html/">Open the app ↗</a><a href="https://github.com/ibipul/latex2html">Source</a></div>
-        <div class="tags"><span class="tag">JavaScript</span><span class="tag">Parsing</span><span class="tag">KaTeX</span></div>
-      </div>
       <a class="card" href="https://github.com/ibipul/segmentation-2Dsnakes-wt-interactive-control">
         <h3>Image Segmentation with Active Contours</h3>
         <p>Gradient-descent 2D active contours on level sets: Chan–Vese, Yezzi and Bhattacharyya functionals, plus interactive feedback control.</p>
@@ -380,6 +418,7 @@
     </ul>
   </section>
 
+  </div>
 </main>
 
 <footer>
