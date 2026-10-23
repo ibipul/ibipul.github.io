@@ -150,6 +150,20 @@
     a.card { color: inherit; transition: border-color .15s, transform .15s; }
     a.card:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-2px); }
     a.card h3::after { content: " ↗"; color: var(--accent); font-weight: 500; }
+    /* Cards for projects with a live site: the whole card opens the site, a separate link opens the source */
+    .card.live { position: relative; transition: border-color .15s, transform .15s; }
+    .card.live:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card.live h3 a { color: inherit; }
+    .card.live h3 a::after { content: ""; position: absolute; inset: 0; border-radius: 16px; }
+    .card.live h3 a:hover { text-decoration: none; }
+    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .live-badge {
+      display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
+      font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .04em;
+    }
+    .live-badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+    .card-links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; font-weight: 500; }
+    .card-links a { position: relative; z-index: 1; }
     .more { margin-top: 16px; font-size: 15px; }
 
     /* Lists */
@@ -289,6 +303,15 @@
         <p>A REST API and chat playground for a RAG assistant that role-plays any character, with an input guardrail and a second chain that tags each reply's mood.</p>
         <div class="tags"><span class="tag">LangChain</span><span class="tag">LangServe</span><span class="tag">FAISS</span><span class="tag">OpenAI</span></div>
       </a>
+      <div class="card live">
+        <div class="card-head">
+          <h3><a href="https://ibipul.github.io/latex2html/">LaTeX to HTML Converter</a></h3>
+          <span class="live-badge">Live</span>
+        </div>
+        <p>Paste or upload a LaTeX document and download a clean, standalone HTML page, with math rendered by KaTeX. Runs entirely in the browser. A rewrite of my compiler-course flex/bison translator.</p>
+        <div class="card-links"><a href="https://ibipul.github.io/latex2html/">Open the app ↗</a><a href="https://github.com/ibipul/latex2html">Source</a></div>
+        <div class="tags"><span class="tag">JavaScript</span><span class="tag">Parsing</span><span class="tag">KaTeX</span></div>
+      </div>
       <a class="card" href="https://github.com/ibipul/segmentation-2Dsnakes-wt-interactive-control">
         <h3>Image Segmentation with Active Contours</h3>
         <p>Gradient-descent 2D active contours on level sets: Chan–Vese, Yezzi and Bhattacharyya functionals, plus interactive feedback control.</p>
@@ -360,7 +383,7 @@
 </main>
 
 <footer>
-  <div class="wrap">Last updated: October 21, 2026</div>
+  <div class="wrap">Last updated: October 23, 2026</div>
 </footer>
 
 </body>
