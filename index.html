@@ -194,6 +194,7 @@
     }
     .live-source { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--muted); }
     .live-source:hover { color: var(--text); }
+    .live-item + .live-item { margin-top: 20px; }
     @media (min-width: 560px) and (max-width: 1099px) {
       .live-card { display: grid; grid-template-columns: 200px minmax(0, 1fr); max-width: 520px; }
       .live-card img { height: 100%; object-fit: cover; object-position: left top; border-bottom: 0; border-right: 1px solid var(--line); }
@@ -277,18 +278,32 @@
     </div>
   </header>
 
-  <aside class="live" aria-labelledby="live-title">
-    <p class="live-label">Live demo</p>
-    <a class="live-card" href="https://ibipul.github.io/latex2html/">
-      <img src="images/latex2html.jpg" width="560" height="313" alt="The LaTeX to HTML converter: LaTeX source on the left, the rendered page on the right">
-      <div class="live-body">
-        <span class="live-badge">Live</span>
-        <h3 id="live-title">LaTeX to HTML Converter</h3>
-        <p>Paste or upload LaTeX, get a clean HTML page. Runs in your browser.</p>
-        <span class="live-cta">Open the app ↗</span>
-      </div>
-    </a>
-    <a class="live-source" href="https://github.com/ibipul/latex2html">Source on GitHub</a>
+  <aside class="live" aria-labelledby="live-label">
+    <p class="live-label" id="live-label">Live demos</p>
+    <div class="live-item">
+      <a class="live-card" href="https://ibipul.github.io/latex2html/">
+        <img src="images/latex2html.jpg" width="560" height="313" alt="The LaTeX to HTML converter: LaTeX source on the left, the rendered page on the right">
+        <div class="live-body">
+          <span class="live-badge">Live</span>
+          <h3>LaTeX to HTML Converter</h3>
+          <p>Paste or upload LaTeX, get a clean HTML page. Runs in your browser.</p>
+          <span class="live-cta">Open the app ↗</span>
+        </div>
+      </a>
+      <a class="live-source" href="https://github.com/ibipul/latex2html">Source on GitHub</a>
+    </div>
+    <div class="live-item">
+      <a class="live-card" href="https://ibipul.github.io/InteractiveGraphVizFramework/">
+        <img src="images/ricci-flow.jpg" width="560" height="313" alt="Interactive Ricci Flow: a college football network after Ricci flow, with its communities pulled apart and colour-coded">
+        <div class="live-body">
+          <span class="live-badge">Live</span>
+          <h3>Interactive Ricci Flow</h3>
+          <p>Watch network communities separate under Ricci flow, and steer it. Runs in your browser.</p>
+          <span class="live-cta">Open the app ↗</span>
+        </div>
+      </a>
+      <a class="live-source" href="https://github.com/ibipul/InteractiveGraphVizFramework">Source on GitHub</a>
+    </div>
   </aside>
 
   <div class="content">
