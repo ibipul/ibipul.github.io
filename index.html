@@ -174,9 +174,10 @@
     }
     .live-card:hover { text-decoration: none; border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 24, 40, .10); }
     .live-card img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--line); }
-    .live-body { display: grid; gap: 8px; padding: 16px 18px 18px; }
-    .live-body h3 { font-size: 17px; }
-    .live-body p { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.55; }
+    @media (max-width: 559px) { .live-card img { height: 130px; object-fit: cover; object-position: left top; } }
+    .live-body { display: grid; gap: 6px; padding: 12px 14px 14px; }
+    .live-body h3 { font-size: 15px; }
+    .live-body p { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.5; }
     .live-badge {
       display: inline-flex; align-items: center; gap: 6px; justify-self: start;
       font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .05em;
@@ -188,20 +189,20 @@
     @keyframes pulse { 70% { box-shadow: 0 0 0 7px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
     @media (prefers-reduced-motion: reduce) { .live-badge::before { animation: none; } }
     .live-cta {
-      justify-self: start; margin-top: 4px; padding: 7px 14px; border-radius: 999px;
-      background: var(--accent); color: var(--bg); font-size: 14px; font-weight: 600;
+      justify-self: start; margin-top: 2px; padding: 5px 12px; border-radius: 999px;
+      background: var(--accent); color: var(--bg); font-size: 13px; font-weight: 600;
     }
-    .live-source { display: inline-block; margin-top: 10px; font-size: 14px; color: var(--muted); }
+    .live-source { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--muted); }
     .live-source:hover { color: var(--text); }
     @media (min-width: 560px) and (max-width: 1099px) {
-      .live-card { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+      .live-card { display: grid; grid-template-columns: 200px minmax(0, 1fr); max-width: 520px; }
       .live-card img { height: 100%; object-fit: cover; object-position: left top; border-bottom: 0; border-right: 1px solid var(--line); }
       .live-body { align-content: center; }
     }
     @media (min-width: 1100px) {
       .wrap { max-width: 1180px; }
       main.wrap {
-        display: grid; grid-template-columns: minmax(0, 1fr) 260px; column-gap: 44px;
+        display: grid; grid-template-columns: minmax(0, 1fr) 220px; column-gap: 40px;
         grid-template-areas: "hero live" "content live";
       }
       main.wrap > .hero { grid-area: hero; }
@@ -283,7 +284,7 @@
       <div class="live-body">
         <span class="live-badge">Live</span>
         <h3 id="live-title">LaTeX to HTML Converter</h3>
-        <p>Paste or upload a LaTeX document and download a clean HTML page, math included. Runs entirely in your browser.</p>
+        <p>Paste or upload LaTeX, get a clean HTML page. Runs in your browser.</p>
         <span class="live-cta">Open the app ↗</span>
       </div>
     </a>
@@ -422,7 +423,7 @@
 </main>
 
 <footer>
-  <div class="wrap">Last updated: October 23, 2026</div>
+  <div class="wrap">Last updated: October 25, 2026</div>
 </footer>
 
 </body>
