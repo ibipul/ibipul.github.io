@@ -201,14 +201,19 @@
       .live-body { align-content: center; }
     }
     @media (min-width: 1100px) {
-      .wrap { max-width: 1180px; }
+      .wrap { max-width: 1280px; }
       main.wrap {
-        display: grid; grid-template-columns: minmax(0, 1fr) 220px; column-gap: 40px;
+        display: grid; grid-template-columns: minmax(0, 1fr) 440px; column-gap: 40px;
         grid-template-areas: "hero live" "content live";
       }
       main.wrap > .hero { grid-area: hero; }
       main.wrap > .content { grid-area: content; min-width: 0; }
       .live { grid-area: live; position: sticky; top: 84px; align-self: start; margin: 28px 0 0; }
+      .live-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; }
+      .live-item { display: flex; flex-direction: column; }
+      .live-item .live-card { flex: 1; display: flex; flex-direction: column; }
+      .live-item .live-body { flex: 1; grid-template-rows: auto auto 1fr auto; }
+      .live-item + .live-item { margin-top: 0; }
     }
 
     footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
@@ -280,6 +285,7 @@
 
   <aside class="live" aria-labelledby="live-label">
     <p class="live-label" id="live-label">Live demos</p>
+    <div class="live-grid">
     <div class="live-item">
       <a class="live-card" href="https://ibipul.github.io/latex2html/">
         <img src="images/latex2html.jpg" width="560" height="313" alt="The LaTeX to HTML converter: LaTeX source on the left, the rendered page on the right">
@@ -315,6 +321,19 @@
         </div>
       </a>
       <a class="live-source" href="https://github.com/ibipul/segmentation-2Dsnakes-wt-interactive-control">Source on GitHub</a>
+    </div>
+    <div class="live-item">
+      <a class="live-card" href="https://ibipul.github.io/3d-reconstruction-ui/">
+        <img src="images/3d-reconstruction.jpg" width="560" height="313" alt="Interactive 3D Reconstruction: camera views of a drone with user strokes marking inside and outside, beside the live 3D shape">
+        <div class="live-body">
+          <span class="live-badge">Live</span>
+          <h3>Interactive 3D Reconstruction</h3>
+          <p>Rebuild a 3D shape from camera views, and guide it with strokes. Runs in your browser.</p>
+          <span class="live-cta">Open the app ↗</span>
+        </div>
+      </a>
+      <a class="live-source" href="https://github.com/ibipul/3d-reconstruction-ui">Source on GitHub</a>
+    </div>
     </div>
   </aside>
 
